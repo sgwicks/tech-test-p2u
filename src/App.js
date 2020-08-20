@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import {getValue} from './utils/api'
 import Dropdown from './components/Dropdown';
 
 function App() {
   const [value, updateValue] = useState(0)
-
-
-  useEffect(() => {
-    
-  }, [])
+  const [c_from, update_c_from] = useState('GBP')
+  const [c_to, update_c_to] = useState('USD')
 
   const handleCalculation = () => {
     return getValue('GBP', 'USD')
@@ -19,11 +16,11 @@ function App() {
   return (
     <div className="App">
       Convert
-        <Dropdown />
-        <Dropdown />
+        <Dropdown updateFn={update_c_from} />
+        <Dropdown updateFn={update_c_to} />
       <form>
-        <label>From: <input /></label>
-        <label>To: <input /></label>
+        <label>From: {c_from}</label>
+        <label>To: {c_to}</label>
       </form>
       <p>Value: {value}</p>
       <button onClick={handleCalculation}>Calculate value</button>

@@ -5,7 +5,7 @@ import {
   DropdownList
 } from '../styles/DropdownStyles';
 
-const Dropdown = () => {
+const Dropdown = ({updateFn}) => {
   const [isVisible, toggleIsVisible] = useState(false)
   const [options] = useState(['GBP', 'USD', 'AUD', 'EUR'])
   const [option, updateOption] = useState('GBP')
@@ -36,7 +36,10 @@ const Dropdown = () => {
                 return (
                   <li key={`option-${i}`}>
                     <DropdownOption
-                      onClick={() => updateOption(option)}
+                      onClick={() => {
+                        updateOption(option)
+                        updateFn(option)
+                      }}
                       onMouseEnter={(event) =>
                         handleHover(event, 'blue', 'white')
                       }
