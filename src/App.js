@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import {getValue} from './utils/api'
+import {getValue, postLog} from './utils/api'
 import Dropdown from './components/Dropdown';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
       const newTotal = fromValue * value
       updateTotal(newTotal)
       updateValue(value)
+      postLog(c_from, c_to, value, fromValue, newTotal)
     })
   }
 
