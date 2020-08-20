@@ -23,9 +23,9 @@ const postLog = (c_from, c_to, value, fromValue, total) => {
         .catch(err => console.log(err))
 }
 
-const getLogs = () => {
-    return axios.get('/audit')
-        .then(({data}) => data)
+const getLogs = (dateFrom = '1970-01-01', dateTo = '2070-01-01') => {
+    return axios.get(`/audit?dateFrom=${dateFrom}&dateTo=${dateTo}`)
+        .then(({data: {logs}}) => logs)
         .catch(err => console.log(err))
 }
 

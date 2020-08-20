@@ -9,6 +9,7 @@ exports.postNewLog = (req, res) => {
 }
 
 exports.getAllLogs = (req, res) => {
-    return returnAllLogs()
+    const {dateFrom, dateTo} = req.query
+    return returnAllLogs(dateFrom, dateTo)
         .then((logs) => res.status(200).send({logs}))
 }

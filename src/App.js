@@ -9,7 +9,15 @@ function App() {
   const [c_to, update_c_to] = useState('USD')
   const [fromValue, updateFromValue] = useState(0)
   const [total, updateTotal] = useState(0)
-  const [logs, updateLogs] = useState([])
+  const [logs, updateLogs] = useState([{user_id: 'test',
+  currency_from: 'GBP',
+  currency_to: 'EUR',
+  exchange_rate: 0.6,
+  amount_given: 100,
+  amount_received: 60,
+  date: '2019-02-03'}])
+  const [dateFrom, updateDateFrom] = useState()
+  const [dateTo, updateDateTo] = useState()
 
   const handleCalculation = () => {
     return getValue(c_from, c_to)
@@ -19,7 +27,7 @@ function App() {
       updateValue(value)
       postLog(c_from, c_to, value, fromValue, newTotal)
       .then(() => {
-        getLogs().then(({logs}) => {
+        getLogs().then((logs) => {
           updateLogs(logs)
         })
       })
@@ -31,15 +39,21 @@ function App() {
     updateFn(input)
   }
 
+  const handleDates = () => {
+    getLogs(dateFrom, dateTo).then((logs) => {
+      updateLogs(logs)
+    })
+  }
+
   useEffect(() => {
-    getLogs().then(({logs}) => {
+    getLogs().then((logs) => {
       updateLogs(logs)
     })
   }, [])
 
   return (
     <div className="App">
-      Convert<br />
+      <h2>Convert</h2>
       Amount: <input value={fromValue} onChange={(event) => handleInput(event.target.value, updateFromValue)} /><br />
       From: {c_from} <Dropdown updateFn={update_c_from} c_default={'GBP'} /><br />
       To: {c_to} <Dropdown updateFn={update_c_to} c_default={'USD'} />
@@ -47,6 +61,7 @@ function App() {
       <button onClick={handleCalculation}>Calculate value</button>
       <h2>Audit Logs</h2>
       <table>
+        <tbody>
         <tr>
           <th>Log ID</th>
           <th>User ID</th>
@@ -69,7 +84,7 @@ function App() {
             date
           } = entry
           return (
-            <tr className={`tr${i}`}>
+            <tr key={`tr${i}`}>
               <td>{log_id}</td>
               <td>{user_id}</td>
               <td>{currency_from}</td>
@@ -81,8 +96,11 @@ function App() {
             </tr>
           )
         })}
+        </tbody>
       </table>
-
+      <label>Date from: <input type={'date'} onChange={(event) => handleInput(event.target.value, updateDateFrom)} /></label><br />
+      <label>Date to: <input type={'date'} onChange={(event) => handleInput(event.target.value, updateDateTo)} /></label><br />
+      <button onClick={handleDates}>Search</button>
     </div>
   );
 }
