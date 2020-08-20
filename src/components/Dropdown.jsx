@@ -5,10 +5,10 @@ import {
   DropdownList
 } from '../styles/DropdownStyles';
 
-const Dropdown = ({updateFn}) => {
+const Dropdown = ({updateFn, c_default}) => {
   const [isVisible, toggleIsVisible] = useState(false)
   const [options] = useState(['GBP', 'USD', 'AUD', 'EUR'])
-  const [option, updateOption] = useState('GBP')
+  const [option, updateOption] = useState(c_default)
   
   const handleHover = (event, bg, text) => {
     event.target.style.background = bg;
