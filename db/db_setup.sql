@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS tech_test_p2u;
+
+CREATE DATABASE tech_test_p2u;
