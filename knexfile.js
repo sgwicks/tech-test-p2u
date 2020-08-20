@@ -1,7 +1,6 @@
 const user = require('./user')
 
 module.exports = {
-  development: {
     client: 'pg',
     connection: {
       ...user,
@@ -13,5 +12,4 @@ module.exports = {
       seeds: {
         directory: './db/seeds'
         }
-  }
 };
