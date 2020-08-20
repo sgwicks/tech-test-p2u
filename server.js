@@ -9,11 +9,6 @@ const corsOptions = {
 
 app.use(cors())
 
-app.get('/hey', (req, res) => {
-    console.log('React made a request')
-    return res.send('ho!')
-})
-
 app.use('/converter', converterRouter)
 
 app.listen(8080, () => console.log('Listening on 8080'))

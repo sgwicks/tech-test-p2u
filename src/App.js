@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import getGreeting from './utils/api'
+import {getValue} from './utils/api'
 
 function App() {
-  const [greeting, updateGreeting] = useState('')
+  const [value, updateValue] = useState()
 
   useEffect(() => {
-    getGreeting()
-      .then((newGreeting) => updateGreeting(newGreeting))
+    getValue('GBP', 'USD')
+      .then(value => updateValue(value))
   }, [])
 
   return (
     <div className="App">
-      {greeting}
+      Value: {value}
     </div>
   );
 }
