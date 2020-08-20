@@ -23,4 +23,10 @@ const postLog = (c_from, c_to, value, fromValue, total) => {
         .catch(err => console.log(err))
 }
 
-module.exports = {getValue, postLog}
+const getLogs = () => {
+    return axios.get('/audit')
+        .then(({data}) => data)
+        .catch(err => console.log(err))
+}
+
+module.exports = {getValue, postLog, getLogs}
