@@ -18,7 +18,13 @@ function App() {
       updateTotal(newTotal)
       updateValue(value)
       postLog(c_from, c_to, value, fromValue, newTotal)
+      .then(() => {
+        getLogs().then(({logs}) => {
+          updateLogs(logs)
+        })
+      })
     })
+    
   }
 
   const handleInput = (input, updateFn) => {
@@ -27,7 +33,6 @@ function App() {
 
   useEffect(() => {
     getLogs().then(({logs}) => {
-      console.log(logs)
       updateLogs(logs)
     })
   }, [])
