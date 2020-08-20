@@ -1,5 +1,8 @@
 const request = require('supertest')
 const app = require('../server')
+const connection = require('../db/connection')
+
+beforeEach(() => connection.seed.run())
 
 describe('app', () => {
     describe('/converter', () => {
