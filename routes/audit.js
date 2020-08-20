@@ -1,7 +1,8 @@
 const auditRouter = require('express').Router()
-const { postNewLog } = require('../controllers/auditControllers')
+const { getAllLogs, postNewLog } = require('../controllers/auditControllers')
 
 auditRouter.route('/')
+    .get(getAllLogs)
     .post(postNewLog)
 
 module.exports = auditRouter
