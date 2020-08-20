@@ -3,16 +3,21 @@ import './App.css';
 import {getValue} from './utils/api'
 
 function App() {
-  const [value, updateValue] = useState()
+  const [value, updateValue] = useState(0)
 
   useEffect(() => {
-    getValue('GBP', 'USD')
-      .then(value => updateValue(value))
+    
   }, [])
+
+  const handleCalculation = () => {
+    return getValue('GBP', 'USD')
+    .then(value => updateValue(value))
+  }
 
   return (
     <div className="App">
       Value: {value}
+      <button onClick={handleCalculation}>Calculate value</button>
     </div>
   );
 }
