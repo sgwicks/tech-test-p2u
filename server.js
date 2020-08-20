@@ -1,4 +1,5 @@
-const cors = require('cors')
+const cors = require('cors');
+const converterRouter = require('./routes/converter');
 const app = require('express')();
 
 const corsOptions = {
@@ -13,5 +14,8 @@ app.get('/hey', (req, res) => {
     return res.send('ho!')
 })
 
+app.use('/converter', converterRouter)
+
 app.listen(8080, () => console.log('Listening on 8080'))
 
+module.exports = app;
