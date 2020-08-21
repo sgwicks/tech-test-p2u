@@ -5,4 +5,5 @@ exports.returnConverterValue = (c_from, c_to) => {
         .select(c_to)
         .where('currency', c_from)
         .then(([value]) => value)
+        .catch(err => console.log(err))
 }

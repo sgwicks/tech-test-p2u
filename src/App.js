@@ -38,6 +38,7 @@ function App() {
         })
       })
     })
+    .catch(err => console.log(err))
     
   }
 
@@ -49,12 +50,14 @@ function App() {
     getLogs(dateFrom, dateTo).then((logs) => {
       updateLogs(logs)
     })
+    .catch(err => console.log(err))
   }
 
   useEffect(() => {
     getLogs().then((logs) => {
       updateLogs(logs)
     })
+    .catch(err => console.log(err))
   }, [])
 
   return (

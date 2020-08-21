@@ -11,5 +11,6 @@ exports.seed = function(knex) {
     })
     .then(() => {
       return knex('audit_logs').insert(logs)
-    });
+    })
+    .catch(err => console.log(err));
 };
