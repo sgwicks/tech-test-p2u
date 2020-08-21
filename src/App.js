@@ -19,13 +19,19 @@ function App() {
   const [dateFrom, updateDateFrom] = useState()
   const [dateTo, updateDateTo] = useState()
 
+  const sanityCheck = (num) => {
+    const sanity = parseFloat(num).toFixed(2)
+    return isNaN(sanity) ? 0 : sanity
+  }
+
   const handleCalculation = () => {
+    const sanityValue = sanityCheck(fromValue)
     return getValue(c_from, c_to)
     .then(value => {
-      const newTotal = fromValue * value
+      const newTotal = sanityCheck(sanityValue * value)
       updateTotal(newTotal)
       updateValue(value)
-      postLog(c_from, c_to, value, fromValue, newTotal)
+      postLog(c_from, c_to, value, sanityValue, newTotal)
       .then(() => {
         getLogs().then((logs) => {
           updateLogs(logs)
